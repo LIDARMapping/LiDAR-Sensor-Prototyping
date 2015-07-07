@@ -1,0 +1,46 @@
+// Print out the time since the start
+// Linearly vary control PWM from 1 to 3.3 volts and back to 1 regularly
+// Print out the current PWM output (Digital pin 10)
+// Print out Sync (Digital pin 8)
+
+unsigned long time = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  pinMode(8, INPUT);
+  pinMode(10, OUTPUT);
+}
+
+void loop() {
+  // Prints the time in milliseconds since the start  
+  time = millis();
+  
+  // Initialize value of sensorValue1
+  int sensorValue1 = digitalRead(8);
+    
+  // Vary control PWM (increasing):
+  for (int pwmValue = 0; pwmValue < 255; pwmValue++) {
+    analogWrite(10, pwmValue);
+    float voltage = pwmValue * (2.3 / 255) + 1;
+    Serial.print(voltage);
+    Serial.print(" ");
+    Serial.print(sensorValue1);
+    Serial.print(" ");
+    Serial.println(time);
+    delay(10);
+  }
+  
+  // Vary control PWM (decreasing):
+  for (int pwmValue = 255; pwmValue > 0; pwmValue--) {
+    analogWrite(10, pwmValue);
+    float voltage = pwmValue * (2.3 / 255) + 1;
+    Serial.print(voltage);
+    Serial.print(" ");
+    Serial.print(sensorValue1);
+    Serial.print(" ");
+    Serial.println(time);
+    delay(10);
+  }
+  
+}
