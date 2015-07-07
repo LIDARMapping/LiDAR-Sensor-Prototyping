@@ -4,23 +4,22 @@
 // return is A1
 // Sync is D8
 
-int pushButton = 8;
 unsigned long time = 0;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(pushButton, INPUT);
+  pinMode(8, INPUT);
 }
 
 void loop() {
   //Prints the time in milliseconds since the start  
   time = millis();
   
-  //Initialize values of sensorValue1, sensorValue2, and buttonState
+  //Initialize values of sensorValue1, sensorValue2, and sensorValue3
   int sensorValue1 = analogRead(A3);
   int sensorValue2 = analogRead(A1);
-  int buttonState = digitalRead(pushButton);
+  int sensorValue3 = digitalRead(8);
   
   //Convert analog pin values to voltage units
   float voltage1 = sensorValue1 * (5.0 / 1023.0);
@@ -31,7 +30,7 @@ void loop() {
   Serial.print(" ");
   Serial.print(voltage2);
   Serial.print(" ");
-  Serial.print(buttonState);
+  Serial.print(sensorValue3);
   Serial.print(" ");
   Serial.println(time);      
 }
