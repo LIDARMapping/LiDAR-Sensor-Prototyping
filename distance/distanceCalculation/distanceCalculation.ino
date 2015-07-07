@@ -9,6 +9,7 @@
  int ret = A1;
  
  int previousSync = 0;
+ int previousMeasurement = 0;
  
  void setup()
  {
@@ -17,13 +18,12 @@
    // Initialize pin
    pinMode(sync, INPUT);
    while(!syncHighToDown());  // Waits for sync to go high to low
-   Serial.println("Starting");
+   previousMeasurement = millis();
  }
  
  void loop()
  {
    int previous = 0;
-   int startMeasurement = millis();
    int maxRet = 0, maxZero = 0;
    int maxRetTime, maxZeroTime;
    
@@ -44,8 +44,9 @@
    
    int endMeasurement = millis();
    
-   float distance = 9.16 * (maxRetTime - maxZeroTime)/(endMeasurement - startMeasurement);
+   float distance = 9.16 * (maxRetTime - maxZeroTime)/(endMeasurement - previousMeasurement);
    Serial.println(distance);
+   previousMeasurement = endMeasurement;
  }
  
  
