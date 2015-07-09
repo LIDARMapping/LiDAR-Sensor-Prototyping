@@ -1,11 +1,18 @@
+int readPin = 4;
+
 void setup() {
   // put your setup code here, to run once:
-  pinMode(4,INPUT);
+  pinMode(readPin,INPUT);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if(digitalRead(4) == LOW){
+  if(digitalRead(readPin) == HIGH){
+    while(digitalRead(readPin) == HIGH){
+      ;
+    }  
+  }
+  if(digitalRead(readPin) == LOW){
     //read from the LIDAR  
   }
 }
