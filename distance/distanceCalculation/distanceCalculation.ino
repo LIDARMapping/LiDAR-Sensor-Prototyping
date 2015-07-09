@@ -44,8 +44,15 @@
    
    int endMeasurement = millis();
    
-   float distance = 9.16 * (maxRetTime - maxZeroTime)/(endMeasurement - previousMeasurement);
-   Serial.println(distance);
+   if(maxRet < 0.5/5.0*1025)
+   {
+     Serial.println("Out of Range");
+   }
+   else
+   {
+     float distance = 9.16 * (maxRetTime - maxZeroTime)/(endMeasurement - previousMeasurement);
+     Serial.println(distance);
+   }
    previousMeasurement = endMeasurement;
  }
  
