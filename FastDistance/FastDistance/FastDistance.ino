@@ -24,7 +24,15 @@
    if(Serial.available() > 0)
    {
      int n = Serial.read() - '0';
-     Serial.print(takeMeasurement(n));
+     double measurement = takeMeasurement(n);
+     if(measurement < 0.0)
+     {
+       Serial.print("Out of Range");
+     }
+     else
+     {
+       Serial.print(measurement);
+     }
      Serial.println("");
      Serial.println("Number of measurements (0-9): ");
    }
@@ -57,8 +65,14 @@ double takeMeasurement(int n)
        }
      }
    
-     int endMeasurement = millis();     
-     totalDistance += ((double)(maxRetTime - maxZeroTime))/(endMeasurement - startMeasurement);
+     int endMeasurement = millis();
+     
+     if(maxRet < 0.25/5.0*1022)
+     {
+       return -1.0;
+     }
+     
+     totalDistance += 2.0*((double)(maxRetTime - maxZeroTime))/(endMeasurement - startMeasurement);
 
      startMeasurement = endMeasurement;
    }
