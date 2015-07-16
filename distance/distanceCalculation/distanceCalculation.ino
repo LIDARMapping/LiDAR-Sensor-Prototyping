@@ -50,7 +50,7 @@
    }
    else
    {
-     float distance = 18.22 * (maxRetTime - maxZeroTime)/(endMeasurement - previousMeasurement);
+     float distance = 9.11 * (maxRetTime - maxZeroTime)/(endMeasurement - previousMeasurement);
      Serial.println(distance);
    }
    previousMeasurement = endMeasurement;
