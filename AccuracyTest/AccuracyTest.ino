@@ -3,7 +3,7 @@
  * and compare the difference in time with the period of the
  * sync signal in order to calculate a distance.
  */
-  
+   
  void setup()
  {
    Serial.begin(9600);
@@ -13,7 +13,7 @@
  
  void loop()
  {
-     if(getTimeBase() > 150)
+     if(getTimeBase() > 200)
      {
        return;
      }
@@ -23,7 +23,7 @@
        Serial.print(' ');
      }
      setTimeBase(getTimeBase() + 1);
-     double measurement = takeMeasurement(100);
+     double measurement = takeMeasurement(2000);
      if(measurement < 0.0)
      {
        Serial.println("NaN");
