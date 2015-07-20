@@ -13,25 +13,25 @@
  
  void loop()
  {
-     if(getTimeBase() > 200)
-     {
-       return;
-     }
-     else
-     {
-       Serial.print(getTimeBase());
-       Serial.print(' ');
-     }
-     setTimeBase(getTimeBase() + 1);
-     double measurement = takeMeasurement(2000);
+  if(getTimeBase() > 150)
+  {
+    return;
+  }
+  setTimeBase(getTimeBase() + 1);
+  for(int i = 0; i < 10; i++)
+  {
+     Serial.print(getTimeBase());
+     Serial.print(' ');
+     double measurement = takeMeasurement(1);
      if(measurement < 0.0)
      {
        Serial.println("NaN");
      }
      else
      {
-       Serial.println(measurement);
+       Serial.println(measurement*1000);
      }
+  }
  }
  
 

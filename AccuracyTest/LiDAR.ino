@@ -20,7 +20,8 @@ int setupLIDAR()
   return 0;
 }
 
-double takeMeasurement(long milliseconds)
+//double takeMeasurement(long milliseconds)
+double takeMeasurement(int n)
  {   
    analogWrite(timebasePin, timebase);
    while(!syncHighToDown());  // Waits for sync to go high to low
@@ -30,7 +31,7 @@ double takeMeasurement(long milliseconds)
    double totalDistance = 0.0;
    
    int i;
-   for(i = 0; start+milliseconds  > millis(); i++)
+   for(i = 0; i < n; i++)
    {
      int previous = 0;
      int maxRet = 0, maxZero = 0;
