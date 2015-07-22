@@ -4,18 +4,11 @@
  * sync signal in order to calculate a distance.
  */
  
- int sync = 8;
- int zero = A3;
- int ret = A1;
- 
- int previousSync = 0;
- 
  void setup()
  {
    Serial.begin(9600);
    
    // Initialize pin
-   pinMode(sync, INPUT);
    Serial.println("Number of measurements (0-9): ");
  }
  
